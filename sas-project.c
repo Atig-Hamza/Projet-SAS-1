@@ -73,6 +73,7 @@ void Afficher()
                 printf("Note generale: %d\n", NG[i]);
                 printf("\n");
             }
+            break;
         case 2:
 
             printf("↳  1. Par ordre alphabetique de A a Z\n");
