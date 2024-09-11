@@ -45,7 +45,8 @@ void Afficher()
 
     if (count > 0)
     {
-        int ch2;
+        int ch2, ch3, ch4;
+        int tresbien = 0, bien = 0, assbien = 0, passable = 0;
 
         printf("\n\n+-----------------------------------------------+\n");
         printf("|            Affichage des etudiants            |\n");
@@ -73,7 +74,6 @@ void Afficher()
                 printf("\n");
             }
         case 2:
-            int ch3;
 
             printf("↳  1. Par ordre alphabetique de A a Z\n");
             printf("   2. Par ordre alphabetique de Z a A\n");
@@ -193,7 +193,6 @@ void Afficher()
             break;
         case 3:
 
-            int ch4;
 
             printf("↳  1. Par La moyenne generale croissante\n");
             printf("   2. Par La moyenne generale decroissante\n");
@@ -312,7 +311,7 @@ void Afficher()
             break;
         case 4:
 
-            int tresbien = 0, bien = 0, assbien = 0, passable = 0;
+            
             for (int i = 0; i < count; i++)
             {
                 if (NG[i] >= 16)
@@ -484,16 +483,17 @@ int main()
 
     while (1)
     {
+        int modifier;
         printf("+-----------------------------------------------+\n");
-        printf("|   Gestion des Etudiants dans une Université   |\n");
+        printf("|   Gestion des Etudiants dans une Universite   |\n");
         printf("+-----------------------------------------------+\n");
-        printf("| 1. Ajouter un étudiant                        |\n");
-        printf("| 2. Modifier un étudiant                       |\n");
-        printf("| 3. Supprimer un étudiant                      |\n");
-        printf("| 4. Afficher un étudiant                       |\n");
-        printf("| 5. Calculer la moyenne générale               |\n");
+        printf("| 1. Ajouter un etudiant                        |\n");
+        printf("| 2. Modifier un etudiant                       |\n");
+        printf("| 3. Supprimer un etudiant                      |\n");
+        printf("| 4. Afficher un etudiant                       |\n");
+        printf("| 5. Calculer la moyenne generale               |\n");
         printf("| 6. Statistiques                               |\n");
-        printf("| 7. Rechercher un étudiant                     |\n");
+        printf("| 7. Rechercher un etudiant                     |\n");
         printf("| 8. Quitter                                    |\n");
         printf("+-----------------------------------------------+\n");
         printf("Entrez votre choix : ");
@@ -576,7 +576,6 @@ int main()
             break;
         case 2:
 
-            int modifier;
 
             printf("\n\n+-----------------------------------------------+\n");
             printf("|             Modifier un etudiant              |\n");
