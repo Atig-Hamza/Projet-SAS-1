@@ -5,6 +5,35 @@ int choix;
 char T1[100][100], T2[100][100], T3[100][100];
 int I1[100], I2[100], I3[100], NG[100];
 int count = 0;
+/*
+void initialiserDonnees()
+{
+    count = 10;
+
+
+    char noms[10][100] = {"Dupont", "Martin", "Durand", "Bernard", "Lemoine",
+                          "Moreau", "Gauthier", "Rousseau", "Blanc", "Petit"};
+    char prenoms[10][100] = {"Jean", "Claire", "Paul", "Sophie", "Marc",
+                             "Luc", "Alice", "Nicolas", "Isabelle", "François"};
+    int jours[10] = {12, 23, 5, 8, 15, 3, 28, 10, 17, 21};
+    int mois[10] = {5, 8, 11, 2, 9, 12, 7, 4, 6, 1};
+    int annees[10] = {2000, 1999, 2001, 2002, 2000, 1998, 2001, 2000, 1999, 2002};
+    char departements[10][100] = {"Informatique", "Mathematiques", "Physique", "Chimie", "Biologie",
+                                  "Géologie", "Économie", "Philosophie", "Histoire", "Sociologie"};
+    int notes[10] = {15, 18, 12, 14, 16, 11, 13, 19, 10, 17};
+
+
+    for (int i = 0; i < count; i++)
+    {
+        strcpy(T1[i], noms[i]);
+        strcpy(T2[i], prenoms[i]);
+        I1[i] = jours[i];
+        I2[i] = mois[i];
+        I3[i] = annees[i];
+        strcpy(T3[i], departements[i]);
+        NG[i] = notes[i];
+    }
+}*/
 
 void supprimer()
 {
@@ -75,7 +104,6 @@ void Afficher()
             }
             break;
         case 2:
-
             printf("↳  1. Par ordre alphabetique de A a Z\n");
             printf("   2. Par ordre alphabetique de Z a A\n");
 
@@ -85,68 +113,17 @@ void Afficher()
 
             if (ch3 == 1)
             {
+
                 char temp[100];
-                int j;
-                for (int i = 0; i < count - 1; i++)
-                {
-                    for (j = i + 1; j < count; j++)
-                    {
-                        if (strcmp(T1[i], T1[j]) > 0)
-                        {
-                            strcpy(temp, T1[i]);
-                            strcpy(T1[i], T1[j]);
-                            strcpy(T1[j], temp);
+                int aux;
 
-                            strcpy(temp, T2[i]);
-                            strcpy(T2[i], T2[j]);
-                            strcpy(T2[j], temp);
-
-                            int aux = I1[i];
-                            I1[i] = I1[j];
-                            I1[j] = aux;
-
-                            aux = I2[i];
-                            I2[i] = I2[j];
-                            I2[j] = aux;
-
-                            aux = I3[i];
-                            I3[i] = I3[j];
-                            I3[j] = aux;
-
-                            aux = NG[i];
-                            NG[i] = NG[j];
-                            NG[j] = aux;
-
-                            strcpy(temp, T3[i]);
-                            strcpy(T3[i], T3[j]);
-                            strcpy(T3[j], temp);
-                        }
-                    }
-
-                    printf("\n");
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        printf("Nom: %s\n", T1[i]);
-                        printf("Prenom: %s\n", T2[i]);
-                        printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
-                        printf("Departement: %s\n", T3[i]);
-                        printf("Note generale: %d\n", NG[i]);
-                        printf("\n");
-                    }
-                }
-            }
-
-            else if (ch3 == 2)
-            {
-                char temp[100];
                 for (int i = 0; i < count - 1; i++)
                 {
                     for (int j = i + 1; j < count; j++)
                     {
-                        if (strcmp(T1[i], T1[j]) < 0)
+                        if (strcmp(T1[i], T1[j]) > 0)
                         {
-                            char temp[100];
+
                             strcpy(temp, T1[i]);
                             strcpy(T1[i], T1[j]);
                             strcpy(T1[j], temp);
@@ -155,7 +132,7 @@ void Afficher()
                             strcpy(T2[i], T2[j]);
                             strcpy(T2[j], temp);
 
-                            int aux = I1[i];
+                            aux = I1[i];
                             I1[i] = I1[j];
                             I1[j] = aux;
 
@@ -179,7 +156,6 @@ void Afficher()
                 }
 
                 printf("\n");
-
                 for (int i = 0; i < count; i++)
                 {
                     printf("Nom: %s\n", T1[i]);
@@ -190,10 +166,64 @@ void Afficher()
                     printf("\n");
                 }
             }
+            else if (ch3 == 2)
+            {
 
+                char temp[100];
+                int aux;
+
+                for (int i = 0; i < count - 1; i++)
+                {
+                    for (int j = i + 1; j < count; j++)
+                    {
+                        if (strcmp(T1[i], T1[j]) < 0)
+                        {
+
+                            strcpy(temp, T1[i]);
+                            strcpy(T1[i], T1[j]);
+                            strcpy(T1[j], temp);
+
+                            strcpy(temp, T2[i]);
+                            strcpy(T2[i], T2[j]);
+                            strcpy(T2[j], temp);
+
+                            aux = I1[i];
+                            I1[i] = I1[j];
+                            I1[j] = aux;
+
+                            aux = I2[i];
+                            I2[i] = I2[j];
+                            I2[j] = aux;
+
+                            aux = I3[i];
+                            I3[i] = I3[j];
+                            I3[j] = aux;
+
+                            aux = NG[i];
+                            NG[i] = NG[j];
+                            NG[j] = aux;
+
+                            strcpy(temp, T3[i]);
+                            strcpy(T3[i], T3[j]);
+                            strcpy(T3[j], temp);
+                        }
+                    }
+                }
+
+                printf("\n");
+                for (int i = 0; i < count; i++)
+                {
+                    printf("Nom: %s\n", T1[i]);
+                    printf("Prenom: %s\n", T2[i]);
+                    printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
+                    printf("Departement: %s\n", T3[i]);
+                    printf("Note generale: %d\n", NG[i]);
+                    printf("\n");
+                }
+            }
             break;
-        case 3:
 
+        case 3:
 
             printf("↳  1. Par La moyenne generale croissante\n");
             printf("   2. Par La moyenne generale decroissante\n");
@@ -204,79 +234,13 @@ void Afficher()
 
             if (ch4 == 1)
             {
-
-                char temp[100];
                 for (int i = 0; i < count - 1; i++)
+                {
                     for (int j = i + 1; j < count; j++)
+                    {
                         if (NG[i] > NG[j])
                         {
-                            int aux;
-                            aux = I1[i];
-                            I1[i] = I1[j];
-                            I1[j] = aux;
-
-                            aux = I2[i];
-                            I2[i] = I2[j];
-                            I2[j] = aux;
-
-                            aux = I3[i];
-                            I3[i] = I3[j];
-                            I3[j] = aux;
-
-                            aux = NG[i];
-                            NG[i] = NG[j];
-                            NG[j] = aux;
-
-                            strcpy(temp, T3[i]);
-                            strcpy(T3[i], T3[j]);
-                            strcpy(T3[j], temp);
-
-                            strcpy(temp, T1[i]);
-                            strcpy(T1[i], T1[j]);
-                            strcpy(T1[j], temp);
-
-                            strcpy(temp, T2[i]);
-                            strcpy(T2[i], T2[j]);
-                            strcpy(T2[j], temp);
-                        }
-
-                printf("\n");
-
-                for (int i = 0; i < count; i++)
-                {
-                    printf("Nom: %s\n", T1[i]);
-                    printf("Prenom: %s\n", T2[i]);
-                    printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
-                    printf("Departement: %s\n", T3[i]);
-                    printf("Note generale: %d\n", NG[i]);
-                    printf("\n");
-                }
-            }
-
-            else if (ch4 == 2)
-            {
-
-                for (int i = 0; i < count - 1; i++)
-                {
-                    int j;
-                    for (j = i + 1; j < count; j++)
-                    {
-                        if (NG[i] < NG[j])
-                        {
-                            int aux;
-                            aux = I1[i];
-                            I1[i] = I1[j];
-                            I1[j] = aux;
-
-                            aux = I2[i];
-                            I2[i] = I2[j];
-                            I2[j] = aux;
-
-                            aux = I3[i];
-                            I3[i] = I3[j];
-                            I3[j] = aux;
-
-                            aux = NG[i];
+                            int aux = NG[i];
                             NG[i] = NG[j];
                             NG[j] = aux;
 
@@ -288,6 +252,58 @@ void Afficher()
                             strcpy(temp, T2[i]);
                             strcpy(T2[i], T2[j]);
                             strcpy(T2[j], temp);
+
+                            aux = I1[i];
+                            I1[i] = I1[j];
+                            I1[j] = aux;
+
+                            aux = I2[i];
+                            I2[i] = I2[j];
+                            I2[j] = aux;
+
+                            aux = I3[i];
+                            I3[i] = I3[j];
+                            I3[j] = aux;
+
+                            strcpy(temp, T3[i]);
+                            strcpy(T3[i], T3[j]);
+                            strcpy(T3[j], temp);
+                        }
+                    }
+                }
+            }
+            else if (ch4 == 2)
+            {
+                for (int i = 0; i < count - 1; i++)
+                {
+                    for (int j = i + 1; j < count; j++)
+                    {
+                        if (NG[i] < NG[j])
+                        {
+                            int aux = NG[i];
+                            NG[i] = NG[j];
+                            NG[j] = aux;
+
+                            char temp[100];
+                            strcpy(temp, T1[i]);
+                            strcpy(T1[i], T1[j]);
+                            strcpy(T1[j], temp);
+
+                            strcpy(temp, T2[i]);
+                            strcpy(T2[i], T2[j]);
+                            strcpy(T2[j], temp);
+
+                            aux = I1[i];
+                            I1[i] = I1[j];
+                            I1[j] = aux;
+
+                            aux = I2[i];
+                            I2[i] = I2[j];
+                            I2[j] = aux;
+
+                            aux = I3[i];
+                            I3[i] = I3[j];
+                            I3[j] = aux;
 
                             strcpy(temp, T3[i]);
                             strcpy(T3[i], T3[j]);
@@ -310,42 +326,45 @@ void Afficher()
             }
 
             break;
+
         case 4:
 
-            
             for (int i = 0; i < count; i++)
             {
                 if (NG[i] >= 16)
                 {
-                    printf(" Nom: %s, Trie bien\n", T1[i]);
+                    printf("-Nom: %s, Trie bien\n", T1[i]);
                     tresbien++;
                 }
 
                 else if (NG[i] >= 14)
                 {
-                    printf("Nom: %s\n, Bien", T1[i]);
+                    printf("-Nom: %s, Bien\n", T1[i]);
                     bien++;
                 }
 
                 else if (NG[i] >= 12)
                 {
-                    printf("Nom: %s\n, Assez bien", T1[i]);
+                    printf("-Nom: %s, Assez bien\n", T1[i]);
                     assbien++;
                 }
 
                 else if (NG[i] >= 10)
                 {
-                    printf("Nom: %s\nPassable", T1[i]);
+                    printf("-Nom: %s, Passable\n", T1[i]);
                     passable++;
                 }
             }
 
-            printf("\n");
-            printf("Resultat : \n");
-            printf("Tres bien: %d\n", tresbien);
-            printf("Bien: %d\n", bien);
-            printf("Assez bien: %d\n", assbien);
-            printf("Passable: %d\n", passable);
+            printf("\n\n");
+            printf("+--------------------------------+\n");
+            printf("|           Resultat             |\n");
+            printf("+--------------------------------+\n");
+            printf("|Tres bien: %d                   |\n", tresbien);
+            printf("|Bien: %d                        |\n", bien);
+            printf("|Assez bien: %d                  |\n", assbien);
+            printf("|Passable: %d                    |\n", passable);
+            printf("+--------------------------------+\n");
             printf("\n\n");
 
             break;
@@ -374,9 +393,12 @@ void moyennegen()
 
 void Statistiques()
 {
-    int nbDepart[100] = {0}, nbReussite[100] = {0};
-    int max[3] = {0, 0, 0}, indMax[3] = {0, 0, 0};
+    int nbDepart[100] = {0};
+    int nbReussite[100] = {0};
+    int max[3] = {0};
+    int indMax[3] = {0};
     float seuil;
+
     printf("\n\n+-----------------------------------------------+\n");
     printf("|           Statistiques de l'universite        |\n");
     printf("+-----------------------------------------------+\n");
@@ -410,7 +432,9 @@ void Statistiques()
     printf("Nombre d'etudiants ayant une moyenne generale superieure a %.2f : %d\n", seuil, nbsup);
 
     for (int i = 0; i < count; i++)
+    {
         for (int j = 0; j < 3; j++)
+        {
             if (NG[i] > max[j])
             {
                 for (int k = 2; k > j; k--)
@@ -422,17 +446,33 @@ void Statistiques()
                 indMax[j] = i;
                 break;
             }
-    for (int i = 0; i < count; i++)
-        printf("Etudiant %s %s a une moyenne generale de %d\n", T1[indMax[i]], T2[indMax[i]], max[i]);
+        }
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        if (max[i] > 0)
+        {
+            printf("Etudiant %s %s a une moyenne generale de %d\n", T1[indMax[i]], T2[indMax[i]], max[i]);
+        }
+    }
 
     for (int i = 0; i < count; i++)
+    {
         if (NG[i] >= 10)
-            nbReussite[i]++;
+        {
+            int j;
+            for (j = 0; j < i; j++)
+                if (strcmp(T3[i], T3[j]) == 0)
+                    break;
+            if (j == i)
+                nbReussite[i] = 1;
+            else
+                nbReussite[j]++;
+        }
+    }
     for (int i = 0; i < count; i++)
         if (nbReussite[i] > 0)
-        {
             printf("Nombre d'etudiants ayant reussi dans le departement %s : %d\n", T3[i], nbReussite[i]);
-        }
 }
 
 void recherche()
@@ -481,6 +521,7 @@ void recherche()
 
 int main()
 {
+    /*initialiserDonnees();*/
 
     while (1)
     {
@@ -576,7 +617,6 @@ int main()
 
             break;
         case 2:
-
 
             printf("\n\n+-----------------------------------------------+\n");
             printf("|             Modifier un etudiant              |\n");
