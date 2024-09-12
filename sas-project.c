@@ -393,8 +393,8 @@ void moyennegen()
 
 void Statistiques()
 {
-    int nbDepart[100] = {0};
-    int nbReussite[100] = {0};
+    int nbDepa[100] = {0};
+    int nbReu[100] = {0};
     int max[3] = {0};
     int indMax[3] = {0};
     float seuil;
@@ -405,6 +405,7 @@ void Statistiques()
 
     printf("Nombre total d'etudiants : %d\n", count);
 
+    
     for (int i = 0; i < count; i++)
     {
         int j;
@@ -412,14 +413,15 @@ void Statistiques()
             if (strcmp(T3[i], T3[j]) == 0)
                 break;
         if (j == i)
-            nbDepart[i] = 1;
+            nbDepa[i] = 1;
         else
-            nbDepart[j]++;
+            nbDepa[j]++;
     }
     for (int i = 0; i < count; i++)
-        if (nbDepart[i] > 0)
-            printf("Nombre d'etudiants dans le departement %s : %d\n", T3[i], nbDepart[i]);
+        if (nbDepa[i] > 0)
+            printf("Nombre d'etudiants dans le departement %s : %d\n", T3[i], nbDepa[i]);
 
+    
     printf("Saisir le seuil de moyenne generale : ");
     scanf("%f", &seuil);
     int nbsup = 0;
@@ -430,6 +432,7 @@ void Statistiques()
             printf("Etudiant %s %s a une moyenne generale de %d\n", T1[i], T2[i], NG[i]);
         }
     printf("Nombre d'etudiants ayant une moyenne generale superieure a %.2f : %d\n", seuil, nbsup);
+
 
     for (int i = 0; i < count; i++)
     {
@@ -456,6 +459,7 @@ void Statistiques()
         }
     }
 
+    // Depa
     for (int i = 0; i < count; i++)
     {
         if (NG[i] >= 10)
@@ -465,14 +469,52 @@ void Statistiques()
                 if (strcmp(T3[i], T3[j]) == 0)
                     break;
             if (j == i)
-                nbReussite[i] = 1;
+                nbReu[i] = 1;
             else
-                nbReussite[j]++;
+                nbReu[j]++;
         }
     }
     for (int i = 0; i < count; i++)
-        if (nbReussite[i] > 0)
-            printf("Nombre d'etudiants ayant reussi dans le departement %s : %d\n", T3[i], nbReussite[i]);
+        if (nbReu[i] > 0)
+            printf("Nombre d'etudiants ayant reussi dans le departement %s : %d\n", T3[i], nbReu[i]);
+
+    
+    int topNotes[3] = {0};   
+    int topIndices[3] = {0}; 
+
+    for (int i = 0; i < count; i++)
+    {
+        if (NG[i] > topNotes[0])
+        {
+            topNotes[2] = topNotes[1];
+            topIndices[2] = topIndices[1];
+            topNotes[1] = topNotes[0];
+            topIndices[1] = topIndices[0];
+            topNotes[0] = NG[i];
+            topIndices[0] = i;
+        }
+        else if (NG[i] > topNotes[1])
+        {
+            topNotes[2] = topNotes[1];
+            topIndices[2] = topIndices[1];
+            topNotes[1] = NG[i];
+            topIndices[1] = i;
+        }
+        else if (NG[i] > topNotes[2])
+        {
+            topNotes[2] = NG[i];
+            topIndices[2] = i;
+        }
+    }
+
+    printf("Les 3 meilleures notes sont :\n");
+    for (int i = 0; i < 3; i++)
+    {
+        if (topNotes[i] > 0)
+        {
+            printf("Etudiant %s %s a une note de %d\n", T1[topIndices[i]], T2[topIndices[i]], topNotes[i]);
+        }
+    }
 }
 
 void recherche()
@@ -665,26 +707,33 @@ int main()
             }
 
             break;
+
         case 3:
             supprimer();
             break;
+
         case 4:
             Afficher();
             break;
+
         case 5:
             moyennegen();
             break;
+
         case 6:
             Statistiques();
             break;
+
         case 7:
             recherche();
             break;
+
         case 8:
             printf("Merci d'avoir utiliser notre application\n");
             printf("Au revoir");
             return 0;
             break;
+
         default:
             printf("Choix invalide");
             break;
