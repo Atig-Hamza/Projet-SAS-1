@@ -2,7 +2,9 @@
 #include <string.h>
 
 int choix;
+     // ↓ Names      ↓ Prenoms     ↓ Depa 
 char T1[100][100], T2[100][100], T3[100][100];
+     // ↓ Jours  ↓ Mois  ↓ Annees ↓ Notes
 int I1[100], I2[100], I3[100], NG[100];
 int count = 0;
 /*
@@ -47,7 +49,7 @@ void supprimer()
         int n;
         printf("Saisir le numero de l'eleve a supprimer: ");
         scanf("%d", &n);
-        if (n > 0)
+        if (n > 0 && n <= count)
         {
             for (int i = n - 1; i < count; i++)
             {
@@ -63,6 +65,16 @@ void supprimer()
 
             printf("L'etudiant a bien ete supprimer !");
         }
+        else if (n < 0)
+        {
+            printf("il semble que vous essayez de faire apparaitre un etudiant du passe. Essayer une autre fois !");
+        }
+        else
+        {
+            printf("il semble que vous avez fait une erreur. Ce N.unique n'existe pas !");
+        }
+        
+            
     }
     else
 
@@ -71,7 +83,6 @@ void supprimer()
 
 void Afficher()
 {
-
     if (count > 0)
     {
         int ch2, ch3, ch4;
@@ -95,6 +106,7 @@ void Afficher()
         case 1:
             for (int i = 0; i < count; i++)
             {
+                printf("N.unique: %d\n", i + 1);
                 printf("Nom: %s\n", T1[i]);
                 printf("Prenom: %s\n", T2[i]);
                 printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
@@ -103,6 +115,7 @@ void Afficher()
                 printf("\n");
             }
             break;
+
         case 2:
             printf("↳  1. Par ordre alphabetique de A a Z\n");
             printf("   2. Par ordre alphabetique de Z a A\n");
@@ -113,7 +126,6 @@ void Afficher()
 
             if (ch3 == 1)
             {
-
                 char temp[100];
                 int aux;
 
@@ -123,7 +135,7 @@ void Afficher()
                     {
                         if (strcmp(T1[i], T1[j]) > 0)
                         {
-
+                            
                             strcpy(temp, T1[i]);
                             strcpy(T1[i], T1[j]);
                             strcpy(T1[j], temp);
@@ -158,6 +170,7 @@ void Afficher()
                 printf("\n");
                 for (int i = 0; i < count; i++)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("Nom: %s\n", T1[i]);
                     printf("Prenom: %s\n", T2[i]);
                     printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
@@ -168,7 +181,6 @@ void Afficher()
             }
             else if (ch3 == 2)
             {
-
                 char temp[100];
                 int aux;
 
@@ -178,7 +190,6 @@ void Afficher()
                     {
                         if (strcmp(T1[i], T1[j]) < 0)
                         {
-
                             strcpy(temp, T1[i]);
                             strcpy(T1[i], T1[j]);
                             strcpy(T1[j], temp);
@@ -213,6 +224,7 @@ void Afficher()
                 printf("\n");
                 for (int i = 0; i < count; i++)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("Nom: %s\n", T1[i]);
                     printf("Prenom: %s\n", T2[i]);
                     printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
@@ -224,7 +236,6 @@ void Afficher()
             break;
 
         case 3:
-
             printf("↳  1. Par La moyenne generale croissante\n");
             printf("   2. Par La moyenne generale decroissante\n");
 
@@ -317,6 +328,7 @@ void Afficher()
 
             for (int i = 0; i < count; i++)
             {
+                printf("N.unique: %d\n", i + 1);
                 printf("Nom: %s\n", T1[i]);
                 printf("Prenom: %s\n", T2[i]);
                 printf("Date de naissance: %d-%d-%d\n", I1[i], I2[i], I3[i]);
@@ -328,29 +340,29 @@ void Afficher()
             break;
 
         case 4:
-
             for (int i = 0; i < count; i++)
             {
                 if (NG[i] >= 16)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("-Nom: %s, Trie bien\n", T1[i]);
                     tresbien++;
                 }
-
                 else if (NG[i] >= 14)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("-Nom: %s, Bien\n", T1[i]);
                     bien++;
                 }
-
                 else if (NG[i] >= 12)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("-Nom: %s, Assez bien\n", T1[i]);
                     assbien++;
                 }
-
                 else if (NG[i] >= 10)
                 {
+                    printf("N.unique: %d\n", i + 1);
                     printf("-Nom: %s, Passable\n", T1[i]);
                     passable++;
                 }
@@ -359,23 +371,27 @@ void Afficher()
             printf("\n\n");
             printf("+--------------------------------+\n");
             printf("|           Resultat             |\n");
+            printf("|--------------------------------|\n");
+            printf("| Tres bien: %d                  |\n", tresbien);
+            printf("| Bien: %d                       |\n", bien);
+            printf("| Assez bien: %d                 |\n", assbien);
+            printf("| Passable: %d                   |\n", passable);
             printf("+--------------------------------+\n");
-            printf("|Tres bien: %d                   |\n", tresbien);
-            printf("|Bien: %d                        |\n", bien);
-            printf("|Assez bien: %d                  |\n", assbien);
-            printf("|Passable: %d                    |\n", passable);
-            printf("+--------------------------------+\n");
-            printf("\n\n");
-
             break;
-        case 5:
 
+        case 5:
+            main();
+            break;
+
+        default:
+            printf("Option invalide. Veuillez reessayer.\n");
             break;
         }
     }
     else
-
-        printf("La liste est vide !");
+    {
+        printf("Aucun etudiant n'a ete enregistre.\n");
+    }
 }
 
 void moyennegen()
@@ -405,7 +421,6 @@ void Statistiques()
 
     printf("Nombre total d'etudiants : %d\n", count);
 
-    
     for (int i = 0; i < count; i++)
     {
         int j;
@@ -421,8 +436,7 @@ void Statistiques()
         if (nbDepa[i] > 0)
             printf("Nombre d'etudiants dans le departement %s : %d\n", T3[i], nbDepa[i]);
 
-    
-    printf("Saisir le seuil de moyenne generale : ");
+    printf("\nSaisir le seuil de moyenne generale : ");
     scanf("%f", &seuil);
     int nbsup = 0;
     for (int i = 0; i < count; i++)
@@ -431,8 +445,7 @@ void Statistiques()
             nbsup++;
             printf("Etudiant %s %s a une moyenne generale de %d\n", T1[i], T2[i], NG[i]);
         }
-    printf("Nombre d'etudiants ayant une moyenne generale superieure a %.2f : %d\n", seuil, nbsup);
-
+    printf("\nNombre d'etudiants ayant une moyenne generale superieure a %.2f : %d\n", seuil, nbsup);
 
     for (int i = 0; i < count; i++)
     {
@@ -455,7 +468,7 @@ void Statistiques()
     {
         if (max[i] > 0)
         {
-            printf("Etudiant %s %s a une moyenne generale de %d\n", T1[indMax[i]], T2[indMax[i]], max[i]);
+            printf("\nEtudiant %s %s a une moyenne generale de %d\n", T1[indMax[i]], T2[indMax[i]], max[i]);
         }
     }
 
@@ -476,11 +489,10 @@ void Statistiques()
     }
     for (int i = 0; i < count; i++)
         if (nbReu[i] > 0)
-            printf("Nombre d'etudiants ayant reussi dans le departement %s : %d\n", T3[i], nbReu[i]);
+            printf("\nNombre d'etudiants ayant reussi dans le departement %s : %d\n", T3[i], nbReu[i]);
 
-    
-    int topNotes[3] = {0};   
-    int topIndices[3] = {0}; 
+    int topNotes[3] = {0};
+    int topIndices[3] = {0};
 
     for (int i = 0; i < count; i++)
     {
@@ -507,7 +519,7 @@ void Statistiques()
         }
     }
 
-    printf("Les 3 meilleures notes sont :\n");
+    printf("\nLes 3 meilleures notes sont :\n");
     for (int i = 0; i < 3; i++)
     {
         if (topNotes[i] > 0)
@@ -568,7 +580,7 @@ int main()
     while (1)
     {
         int modifier;
-        printf("+-----------------------------------------------+\n");
+        printf("\n\n+-----------------------------------------------+\n");
         printf("|   Gestion des Etudiants dans une Universite   |\n");
         printf("+-----------------------------------------------+\n");
         printf("| 1. Ajouter un etudiant                        |\n");
@@ -687,7 +699,7 @@ int main()
                 scanf("%[^\n]", &T2[un]);
                 getchar();
 
-                printf("La date de naissance de l'etudiant: ");
+                printf("La date de naissance de l'etudiant\n");
                 printf("le jour : ");
                 scanf("%d", &I1[un]);
                 getchar();
